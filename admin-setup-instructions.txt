@@ -1,0 +1,29 @@
+ADMIN ACCESS SETUP INSTRUCTIONS
+=============================
+
+To set up admin access, follow these steps:
+
+1. Create a .env.local file in your project root (if it doesn't exist already)
+   - On Windows: Right-click > New > Text Document > Rename to ".env.local"
+   - On Mac/Linux: Run `touch .env.local` in the terminal
+
+2. Add the following line to your .env.local file:
+   ADMIN_EMAIL=your-actual-email@example.com
+   
+   Replace "your-actual-email@example.com" with the email address you use to sign in to the application.
+
+3. Restart your Next.js development server:
+   - Stop the current server (Ctrl+C)
+   - Run `npm run dev` again
+
+4. Sign in to the application using the email address you specified in the .env.local file
+
+5. Navigate to /admin in your browser
+
+If you're still having issues:
+- Check the console logs in your terminal for debugging information
+- Make sure you're signed in with the correct email address
+- Verify that the .env.local file is in the root directory of your project
+- Try clearing your browser cache and cookies
+
+For development purposes, the middleware has been updated to allow access to admin routes if ADMIN_EMAIL is not set, so you should be able to access the admin panel even without setting up the environment variable. 
