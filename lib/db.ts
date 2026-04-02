@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+// Re-export the shared prisma singleton so both import styles work:
+// import prisma from "@/lib/prisma"        (default)
+// import { prisma } from "@/lib/db"        (named)
+import prisma from "@/lib/prisma";
 
-declare global {
-  var prisma: PrismaClient | undefined;
-}
-
-export const prisma = globalThis.prisma || new PrismaClient();
-
-if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma;
+export { prisma };
+export default prisma;
