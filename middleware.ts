@@ -18,15 +18,11 @@ export default async function middleware(request: NextRequestWithAuth) {
       return NextResponse.redirect(new URL("/signin", request.url));
     }
 
-    // For development, allow access if ADMIN_EMAIL is not set
-    if (!process.env.ADMIN_EMAIL) {
-      console.log("ADMIN_EMAIL not set, allowing access for development");
-      return NextResponse.next();
-    }
+    const adminEmail = process.env.ADMIN_EMAIL;
 
-    // Check if user email matches admin email
-    if (token.email !== process.env.ADMIN_EMAIL) {
-      console.log("User email doesn't match admin email, redirecting to home");
+    // Block access if ADMIN_EMAIL is not configured or user doesn't match
+    if (!adminEmail || token.email !== adminEmail) {
+      console.log("Access denied: user is not admin");
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
